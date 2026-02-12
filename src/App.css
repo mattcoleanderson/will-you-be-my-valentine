@@ -75,6 +75,14 @@
   padding: 2rem;
 }
 
+.volume-hint {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--white);
+  opacity: 0.7;
+  margin-bottom: 1.5rem;
+}
+
 .question-text {
   font-family: var(--font-heading);
   font-size: 3.5rem;

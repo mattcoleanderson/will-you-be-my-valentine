@@ -1,17 +1,20 @@
 import { useState, useEffect, useRef, useCallback } from "react";
-import { QUESTION_TEXT, YES_TEXT, NO_TEXT } from "../constants";
+import { QUESTION_TEXT, YES_TEXT, NO_TEXT, VOLUME_HINT } from "../constants";
+
+const NO_OPTION_TEXT = 'You thought "no" was an option? 😉';
 
 export default function ValentineQuestion({ onYesClick }) {
   const [displayedText, setDisplayedText] = useState("");
   const [typingDone, setTypingDone] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [tauntText, setTauntText] = useState("");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const yesBtnRef = useRef(null);
   const btnWidth = useRef(0);
   const btnHeight = useRef(0);
 
-  // Typing animation
+  // Typing animation for question
   useEffect(() => {
     let i = 0;
     const interval = setInterval(() => {
@@ -24,6 +27,19 @@ export default function ValentineQuestion({ onYesClick }) {
     }, 80);
     return () => clearInterval(interval);
   }, []);
+
+  // Typing animation for taunt
+  useEffect(() => {
+    if (!isFollowing) return;
+    let i = 0;
+    setTauntText("");
+    const interval = setInterval(() => {
+      i++;
+      setTauntText(NO_OPTION_TEXT.slice(0, i));
+      if (i >= NO_OPTION_TEXT.length) clearInterval(interval);
+    }, 80);
+    return () => clearInterval(interval);
+  }, [isFollowing]);
 
   // Measure Yes button dimensions
   useEffect(() => {
@@ -77,9 +93,19 @@ export default function ValentineQuestion({ onYesClick }) {
 
   return (
     <div className="question-container">
+      <p className="volume-hint">{VOLUME_HINT}</p>
       <h1 className="question-text">
-        {displayedText}
-        <span className={`caret ${typingDone ? "blink" : ""}`}>|</span>
+        {isFollowing ? (
+          <>
+            {tauntText}
+            <span className="caret blink">|</span>
+          </>
+        ) : (
+          <>
+            {displayedText}
+            <span className={`caret ${typingDone ? "blink" : ""}`}>|</span>
+          </>
+        )}
       </h1>
 
       {typingDone && (
