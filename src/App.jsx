@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import confetti from "canvas-confetti";
 import "./App.css";
-import { MOBILE_BREAKPOINT } from "./constants";
+import { MOBILE_BREAKPOINT, CELEBRATION_SONG_PATH } from "./constants";
 import FloatingHearts from "./components/FloatingHearts";
 import MobileBlocker from "./components/MobileBlocker";
 import ValentineQuestion from "./components/ValentineQuestion";
@@ -74,6 +74,9 @@ export default function App() {
 
   const handleYesClick = useCallback(() => {
     fireConfetti();
+    const audio = new Audio(CELEBRATION_SONG_PATH);
+    audio.volume = 0.5;
+    audio.play().catch(() => {});
     setScreen("celebration");
   }, []);
 
