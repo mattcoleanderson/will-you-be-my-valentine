@@ -91,7 +91,7 @@ export default function ValentineQuestion({ onYesClick }) {
         left: mousePos.x - btnWidth.current / 2,
         top: mousePos.y - btnHeight.current / 2,
         zIndex: 10000,
-        transition: "none",
+        transition: "left 0.15s ease-out, top 0.15s ease-out",
       }
     : {};
 
@@ -113,6 +113,11 @@ export default function ValentineQuestion({ onYesClick }) {
       </h1>
 
       <div className={`buttons-container ${typingDone ? "visible" : ""}`}>
+          {isFollowing && (
+            <span
+              style={{ width: btnWidth.current, height: btnHeight.current, visibility: "hidden" }}
+            />
+          )}
           <button
             ref={yesBtnRef}
             className="btn btn-yes"
