@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import confetti from "canvas-confetti";
 import "./App.css";
-import { MOBILE_BREAKPOINT, CELEBRATION_SONG_PATH } from "./constants";
+import { MOBILE_BREAKPOINT, CELEBRATION_SONG_PATH, COUPLE_PHOTO_PATH } from "./constants";
 import FloatingHearts from "./components/FloatingHearts";
 import MobileBlocker from "./components/MobileBlocker";
 import ValentineQuestion from "./components/ValentineQuestion";
@@ -92,6 +92,8 @@ export default function App() {
       {screen === "question" && (
         <ValentineQuestion onYesClick={handleYesClick} />
       )}
+      <img src={COUPLE_PHOTO_PATH} alt="" style={{ position: "absolute", width: 0, height: 0, opacity: 0 }} />
+
       {screen === "celebration" && <Celebration />}
     </div>
   );
