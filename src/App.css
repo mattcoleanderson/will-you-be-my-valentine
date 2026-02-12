@@ -153,14 +153,13 @@
 }
 
 .photo-frame {
-  width: 320px;
-  height: 320px;
-  border-radius: 20px;
-  border: 6px solid var(--white);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 450px;
+  height: 450px;
   overflow: hidden;
   margin: 0 auto 2rem;
   background: var(--pink-light);
+  clip-path: path('M225 410C225 410 15 285 15 160C15 80 80 15 160 15C200 15 225 45 225 45C225 45 250 15 290 15C370 15 435 80 435 160C435 285 225 410 225 410Z');
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.3));
 }
 
 .couple-photo {
