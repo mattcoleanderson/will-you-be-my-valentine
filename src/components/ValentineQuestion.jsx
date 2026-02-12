@@ -108,8 +108,7 @@ export default function ValentineQuestion({ onYesClick }) {
         )}
       </h1>
 
-      {typingDone && (
-        <div className="buttons-container">
+      <div className={`buttons-container ${typingDone ? "visible" : ""}`}>
           <button
             ref={yesBtnRef}
             className="btn btn-yes"
@@ -125,8 +124,7 @@ export default function ValentineQuestion({ onYesClick }) {
           >
             {NO_TEXT}
           </button>
-        </div>
-      )}
+      </div>
     </div>
   );
 }
