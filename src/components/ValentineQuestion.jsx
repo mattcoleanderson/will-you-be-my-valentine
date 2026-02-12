@@ -7,6 +7,7 @@ export default function ValentineQuestion({ onYesClick }) {
   const [displayedText, setDisplayedText] = useState("");
   const [typingDone, setTypingDone] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [easeComplete, setEaseComplete] = useState(false);
   const [buttonsReady, setButtonsReady] = useState(false);
   const [tauntText, setTauntText] = useState("");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -83,6 +84,7 @@ export default function ValentineQuestion({ onYesClick }) {
       });
     }
     setIsFollowing(true);
+    setTimeout(() => setEaseComplete(true), 300);
   }, [isFollowing, buttonsReady]);
 
   const yesBtnStyle = isFollowing
@@ -91,7 +93,7 @@ export default function ValentineQuestion({ onYesClick }) {
         left: mousePos.x - btnWidth.current / 2,
         top: mousePos.y - btnHeight.current / 2,
         zIndex: 10000,
-        transition: "left 0.15s ease-out, top 0.15s ease-out",
+        transition: easeComplete ? "none" : "left 0.3s ease-out, top 0.3s ease-out",
       }
     : {};
 
