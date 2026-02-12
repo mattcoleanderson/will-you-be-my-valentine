@@ -147,17 +147,20 @@
 .buttons-container.visible {
   opacity: 1;
   pointer-events: auto;
-  animation: buttonsFadeIn 1.2s ease-out;
 }
 
-@keyframes buttonsFadeIn {
+.buttons-container.visible .btn {
+  animation: buttonSpinIn 1.2s ease-out;
+}
+
+@keyframes buttonSpinIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: rotate(360deg) scale(0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: rotate(0deg) scale(1);
   }
 }
 
