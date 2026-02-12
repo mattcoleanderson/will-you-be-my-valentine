@@ -1,0 +1,195 @@
+/* ── App Layout ── */
+.app {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* ── Floating Hearts ── */
+.floating-hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -40px;
+  color: var(--pink-dark);
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: var(--heart-opacity, 0.3);
+  }
+  50% {
+    transform: translateY(-50vh) translateX(var(--drift, 0px)) rotate(180deg);
+  }
+  100% {
+    transform: translateY(-110vh) translateX(calc(var(--drift, 0px) * -0.5)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ── Mobile Blocker ── */
+.mobile-blocker {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile-blocker-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.mobile-blocker-emoji {
+  font-size: 4rem;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.mobile-blocker-text {
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+/* ── Question Screen ── */
+.question-container {
+  text-align: center;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.question-text {
+  font-family: var(--font-heading);
+  font-size: 3.5rem;
+  color: var(--white);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  margin-bottom: 2.5rem;
+  min-height: 4.5rem;
+}
+
+.caret {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  opacity: 1;
+}
+
+.caret.blink {
+  animation: caretBlink 1s step-end infinite;
+}
+
+@keyframes caretBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── Buttons ── */
+.buttons-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn {
+  border: none;
+  border-radius: 50px;
+  padding: 1rem 3rem;
+  font-family: var(--font-body);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-yes {
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.btn-no {
+  background-color: var(--red);
+  color: var(--white);
+}
+
+.btn-no.disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.btn-no.disabled:hover {
+  transform: none;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ── Celebration Screen ── */
+.celebration-container {
+  text-align: center;
+  z-index: 1;
+  animation: fadeIn 0.8s ease-out;
+}
+
+.photo-frame {
+  width: 320px;
+  height: 320px;
+  border-radius: 20px;
+  border: 6px solid var(--white);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  margin: 0 auto 2rem;
+  background: var(--pink-light);
+}
+
+.couple-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.celebration-caption {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  color: var(--white);
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ── Media Query Fallback ── */
+@media (max-width: 767px) {
+  .app {
+    display: none;
+  }
+}

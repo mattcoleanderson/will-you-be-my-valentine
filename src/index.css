@@ -1,0 +1,31 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --pink-light: #ffe0ec;
+  --pink: #ff69b4;
+  --pink-dark: #ff1493;
+  --red: #e74c3c;
+  --green: #27ae60;
+  --white: #ffffff;
+  --font-heading: "Pacifico", cursive;
+  --font-body: "Quicksand", sans-serif;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #ffecd2 100%);
+}
