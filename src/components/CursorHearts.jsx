@@ -17,7 +17,7 @@ export default function CursorHearts() {
     setHearts((prev) => [...prev.slice(-20), heart]);
     setTimeout(() => {
       setHearts((prev) => prev.filter((h) => h.id !== id));
-    }, 800);
+    }, 1500);
   }, []);
 
   useEffect(() => {

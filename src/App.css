@@ -51,17 +51,17 @@
   position: fixed;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  animation: cursorHeartFade 0.8s ease-out forwards;
+  animation: cursorHeartFade 1.5s ease-out forwards;
 }
 
 @keyframes cursorHeartFade {
   0% {
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -100%) scale(0.3);
+    transform: translate(-50%, -100%) scale(0.3) rotate(120deg);
   }
 }
 
