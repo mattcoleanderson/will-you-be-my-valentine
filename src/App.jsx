@@ -6,6 +6,7 @@ import FloatingHearts from "./components/FloatingHearts";
 import MobileBlocker from "./components/MobileBlocker";
 import ValentineQuestion from "./components/ValentineQuestion";
 import Celebration from "./components/Celebration";
+import CursorHearts from "./components/CursorHearts";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(
@@ -87,6 +88,7 @@ export default function App() {
   return (
     <div className="app">
       <FloatingHearts />
+      <CursorHearts />
       {screen === "question" && (
         <ValentineQuestion onYesClick={handleYesClick} />
       )}

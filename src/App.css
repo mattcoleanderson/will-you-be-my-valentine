@@ -38,6 +38,33 @@
   }
 }
 
+/* ── Cursor Hearts ── */
+.cursor-hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.cursor-heart {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  animation: cursorHeartFade 0.8s ease-out forwards;
+}
+
+@keyframes cursorHeartFade {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.3);
+  }
+}
+
 /* ── Mobile Blocker ── */
 .mobile-blocker {
   position: fixed;
