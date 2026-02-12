@@ -7,6 +7,7 @@ export default function ValentineQuestion({ onYesClick }) {
   const [displayedText, setDisplayedText] = useState("");
   const [typingDone, setTypingDone] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [buttonsReady, setButtonsReady] = useState(false);
   const [tauntText, setTauntText] = useState("");
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
@@ -41,13 +42,16 @@ export default function ValentineQuestion({ onYesClick }) {
     return () => clearInterval(interval);
   }, [isFollowing]);
 
-  // Measure Yes button dimensions
+  // Measure Yes button dimensions and enable interaction after animation
   useEffect(() => {
+    if (!typingDone) return;
     if (yesBtnRef.current) {
       const rect = yesBtnRef.current.getBoundingClientRect();
       btnWidth.current = rect.width;
       btnHeight.current = rect.height;
     }
+    const timer = setTimeout(() => setButtonsReady(true), 1200);
+    return () => clearTimeout(timer);
   }, [typingDone]);
 
   // Mouse move listener when following
@@ -67,7 +71,7 @@ export default function ValentineQuestion({ onYesClick }) {
   }, [isFollowing]);
 
   const handleNoHover = useCallback(() => {
-    if (isFollowing) return;
+    if (isFollowing || !buttonsReady) return;
     // Seed mousePos from Yes button's current center to prevent jump
     if (yesBtnRef.current) {
       const rect = yesBtnRef.current.getBoundingClientRect();
@@ -79,7 +83,7 @@ export default function ValentineQuestion({ onYesClick }) {
       });
     }
     setIsFollowing(true);
-  }, [isFollowing]);
+  }, [isFollowing, buttonsReady]);
 
   const yesBtnStyle = isFollowing
     ? {
@@ -112,7 +116,7 @@ export default function ValentineQuestion({ onYesClick }) {
           <button
             ref={yesBtnRef}
             className="btn btn-yes"
-            style={yesBtnStyle}
+            style={{ ...yesBtnStyle, pointerEvents: buttonsReady ? "auto" : "none" }}
             onClick={onYesClick}
           >
             {YES_TEXT}
@@ -120,7 +124,7 @@ export default function ValentineQuestion({ onYesClick }) {
           <button
             className={`btn btn-no ${isFollowing ? "disabled" : ""}`}
             onMouseEnter={handleNoHover}
-            style={isFollowing ? { pointerEvents: "none" } : {}}
+            style={{ pointerEvents: isFollowing || !buttonsReady ? "none" : "auto" }}
           >
             {NO_TEXT}
           </button>
